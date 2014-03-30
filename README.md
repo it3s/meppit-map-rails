@@ -12,7 +12,7 @@ And then execute:
 
 ## Usage
 
-To start using the leaflet-rails gem, follow the steps below (assuming you use the default asset pipeline):
+To start using the meppit-map-rails gem, follow the steps below (assuming you use the default asset pipeline):
 
 Open your application-wide CSS file (`app/assets/stylesheets/application.css`) and add the following line as a comment:
 
