@@ -6,6 +6,7 @@ echo "done."
 
 echo -n "Copying javascript... "
 cp meppit-map-tmp/dist/meppit-map.full.js vendor/assets/javascripts/meppit-map.js
+cp meppit-map-tmp/dist/meppit-map.min.map vendor/assets/javascripts/meppit-map.js.map
 echo "done."
 
 echo -n "Copying stylesheets... "
