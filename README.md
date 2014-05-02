@@ -1,5 +1,7 @@
 # Meppit::Map::Rails
 
+[![Build Status](https://travis-ci.org/it3s/meppit-map-rails.svg)](https://travis-ci.org/it3s/meppit-map-rails)
+
 ## Installation
 
 Add this line to your application's Gemfile:
