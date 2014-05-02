@@ -20,4 +20,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rails", "~> 4.0.2"
   spec.add_development_dependency "sqlite3"
+  spec.add_development_dependency 'minitest'
+  spec.add_development_dependency 'capybara'
 end
