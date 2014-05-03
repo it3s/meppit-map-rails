@@ -1,7 +1,9 @@
 describe "static assets integration" do
-  it "provides meppit-map.js on the asset pipeline" do
-    visit '/assets/meppit-map.js'
-    page.text.must_include 'meppit-map'
+  it "provides javascripts on the asset pipeline" do
+    visit '/assets/meppit-map/main.js'
+    visit '/assets/meppit-map/map.js'
+    visit '/assets/meppit-map/editor.js'
+    visit '/assets/meppit-map/popup.js'
   end
 
   it "provides meppit-map.css on the asset pipeline" do
@@ -14,7 +16,4 @@ describe "static assets integration" do
     visit '/assets/marker-icon.png'
   end
 
-  it "provides maps on the asset pipeline" do
-    visit '/assets/meppit-map.js.map'
-  end
 end
