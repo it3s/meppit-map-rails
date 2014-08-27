@@ -35,6 +35,17 @@ class Map extends Meppit.BaseClass
           @load resp, callback
         else
           callback? null
+    else if Meppit.isArray data # got a list of id or url
+      count = 0
+      respCollection =
+        "type": "FeatureCollection",
+        "features": []
+      for data_ in data
+        @load data_, (resp) ->
+          count++
+          respCollection.features.push resp
+          if count == data.length
+            callback respCollection
     else
       # Removes the old version of already loaded features before loading the
       # new one.
@@ -54,6 +65,14 @@ class Map extends Meppit.BaseClass
   toGeoJSON: ->
     # Returns a GeoJSON FeatureCollection containing all features loaded
     @_geoJsonManager.toGeoJSON()
+
+  toSimpleGeoJSON: ->
+    # Return a simplified version of GeoJSON FeatureCollection containing all
+    # features loaded whithout the `properties` field
+    geoJSON = @_geoJsonManager.toGeoJSON()
+    for feature in geoJSON.features
+      feature.properties = {}
+    geoJSON
 
   get: (id) ->
     # Returns a GeoJSON Feature or undefined
@@ -86,6 +105,10 @@ class Map extends Meppit.BaseClass
 
   cancel: ->
     @_editorManager?.cancel()
+    this
+
+  revert: ->
+    @_editorManager?.revert()
     this
 
   openPopup: (data, content) ->
@@ -142,6 +165,10 @@ class Map extends Meppit.BaseClass
     return url if url?
     url = Meppit.interpolate @getOption('featureURL'), baseURL: @_getBaseURL()
     Meppit.interpolate url, id: @_getGeoJSONId(feature)
+
+  refresh: ->
+    @leafletMap._onResize()
+    this
 
   _getBounds: (data) ->
     layers = @_getLeafletLayers data

@@ -10,7 +10,7 @@ class EditorManager extends Meppit.BaseClass
     @_uneditedLayerProps = {}
 
   edit: (data, callback) ->
-    layer = @map._getLeafletLayer data
+    layer = @map._getLeafletLayers(data)[0]
     return if @_currentLayer? and @_currentLayer is layer
     @done()
     @_currentCallback = callback
@@ -18,15 +18,19 @@ class EditorManager extends Meppit.BaseClass
     edit = =>
       return if not @_currentLayer
       @_backupLayer @_currentLayer
-      @_currentLayer?.editing?.enable()  # Paths
-      @_currentLayer?.dragging?.enable()  # Markers
+      enable = (layer) ->
+        return if not layer
+        layer.editing?.enable()  # Paths
+        layer.dragging?.enable()  # Markers
+        enable layer_ for id, layer_ of layer._layers if layer._layers? # Collection
+      enable @_currentLayer
       @map.editing = true
     # Try to load the data if it was not found
     if @_currentLayer
       edit()
     else
       @map.load data, =>
-        @_currentLayer = @map._getLeafletLayer data
+        @_currentLayer = @map._getLeafletLayers(data)[0]
         edit()
 
   draw: (data, callback) ->
@@ -58,9 +62,12 @@ class EditorManager extends Meppit.BaseClass
     @map.editing = false
 
   cancel: ->
-    @_revertLayer @_currentLayer
+    @revert()
     @done()  # FIXME: Should we call the same callback here?
     @map.editing = false
+
+  revert: ->
+    @_revertLayer @_currentLayer
 
   _initToolbars: ->
       return if not @getOption 'drawControl'
