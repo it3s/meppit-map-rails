@@ -1,5 +1,5 @@
 window.Meppit ?= {}
-window.Meppit.VERSION = '0.1.2'
+window.Meppit.VERSION = '0.1.3'
 
 isArray = Meppit.isArray = (data) ->
   Object.prototype.toString.call(data) is '[object Array]'
@@ -30,7 +30,7 @@ getDate = Meppit.getDate = (date) ->
             'July', 'August', 'September', 'October', 'November', 'December']
   date ?= new Date()
   day = date.getDate()
-  month = date.getMonth() + 1
+  month = date.getMonth()
   yy = date.getYear()
   year = if yy < 1000 then yy + 1900 else yy
 
@@ -74,7 +74,7 @@ requestJSON = Meppit.requestJSON = (url, callback) ->
 
 counter = 0
 class BaseClass
-  VERSION: '0.1.2'
+  VERSION: '0.1.3'
 
   constructor: ->
     @cid = counter++
