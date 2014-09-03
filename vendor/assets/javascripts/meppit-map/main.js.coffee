@@ -1,5 +1,5 @@
 window.Meppit ?= {}
-window.Meppit.VERSION = '0.1.4'
+window.Meppit.VERSION = '0.1.5'
 
 isArray = Meppit.isArray = (data) ->
   Object.prototype.toString.call(data) is '[object Array]'
@@ -74,7 +74,7 @@ requestJSON = Meppit.requestJSON = (url, callback) ->
 
 counter = 0
 class BaseClass
-  VERSION: '0.1.4'
+  VERSION: '0.1.5'
 
   constructor: ->
     @cid = counter++
