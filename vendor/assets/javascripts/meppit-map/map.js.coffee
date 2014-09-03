@@ -402,7 +402,7 @@ class Map extends Meppit.BaseClass
       src = script.src
       if src.match meppitMapRe
         path = src.split(meppitMapRe)[0]
-        imagePath = (if path then path + '/' else '') + 'images'
+        imagePath = (if path then path + '/' else '')
         break
     L.Icon.Default.imagePath = imagePath
 

@@ -33,7 +33,7 @@ echo "done."
 
 echo -n "Fixing assets path... "
 sed -i -e "s/return if L.Icon.Default.imagePath[?]//g" vendor/assets/javascripts/meppit-map/map.js.coffee
-sed -i -e "s/\(L.Icon.Default.imagePath = [(]if path then path + '\/' else ''[)]\) [+] 'images'/\1/g" vendor/assets/javascripts/meppit-map/map.js.coffee
+sed -i -e "s/\(imagePath = [(]if path then path + '\/' else ''[)]\) [+] 'images'/\1/g" vendor/assets/javascripts/meppit-map/map.js.coffee
 sed -i -e "s/url[(]'\{0,1\}images[/]\(.*.png\)'\{0,1\}[)]/url(<%= asset_path '\1' %>)/g" vendor/assets/stylesheets/meppit-map.css.erb
 echo "done."
 
