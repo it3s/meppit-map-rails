@@ -1,6 +1,7 @@
 #= require meppit-map/main
 #= require meppit-map/popup
 #= require meppit-map/map
+#= require meppit-map/groups
 #= require meppit-map/editor
 #= require meppit-map/main
 #= require meppit-map
